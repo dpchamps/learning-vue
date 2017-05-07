@@ -5,6 +5,22 @@
     <title>Learning A Good VueJs!</title>
 </head>
 <body>
-<h1>Hello World!</h1>
+<div id="root">
+    <h1>Hello World!</h1>
+    <input type="text" id="input" v-model="message">
+    <p>How cool! {{ message }}</p>
+</div>
+<script src="https://unpkg.com/vue"></script>
+<script>
+    var data = {
+        message: 'hello world!'
+    };
+
+    new Vue({
+        el: '#root',
+        data: data
+    })
+
+</script>
 </body>
 </html>
