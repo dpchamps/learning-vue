@@ -3,24 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Learning A Good VueJs!</title>
+    <style>
+        .color-red{
+            color:red;
+        }
+        .color-blue{
+            color:blue;
+        }
+        .hide{
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <div id="root">
-    <h1>Hello World!</h1>
-    <input type="text" id="input" v-model="message">
-    <p>How cool! {{ message }}</p>
+    <ul>
+        <li v-for="name in names" >{{name}} <span class="delete-name">&emsp; &times</span></li>
+    </ul>
+    <input v-model="newName" type="text">
+    <button :title="title" @click="addName">Add That Name!</button>
+
+    <h1 :class="className">Hello World!</h1>
+    <button :disabled="disabled"  @click="disableButton" v-text="buttonText"></button>
+    <button :class="hide" @click="enableButton">Enable!</button>
 </div>
 <script src="https://unpkg.com/vue"></script>
 <script>
-    var data = {
-        message: 'hello world!'
-    };
-
     new Vue({
         el: '#root',
-        data: data
-    })
-
+        data: {
+            newName: '',
+            names: ['Joe', 'Mary', 'Jane', 'Jack'],
+            title: 'Das Botton',
+            className: 'color-red',
+            buttonText: 'Disable Me!',
+            disabled: false,
+            hide: "hide"
+        },
+        methods: {
+            addName: function(){
+                this.names.push(this.newName);
+                this.newName = '';
+            },
+            disableButton: function(){
+                if(!this.disabled){
+                    this.className = 'color-blue';
+                    this.disabled = true;
+                    this.hide = "";
+                }
+            },
+            enableButton: function(){
+                if(this.disabled){
+                    this.disabled = false;
+                    this.hide = "hide";
+                }
+            }
+        },
+        mounted : function(){
+        }
+    });
 </script>
 </body>
 </html>
