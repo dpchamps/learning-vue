@@ -17,46 +17,43 @@
 </head>
 <body>
 <div id="root">
-    <ul>
-        <li v-for="name in names" >{{name}} <span class="delete-name">&emsp; &times</span></li>
-    </ul>
-    <input v-model="newName" type="text">
-    <button :title="title" @click="addName">Add That Name!</button>
+    <h2>All Tasks</h2>
+    <ul v-for="task in tasks">{{task.description}} <input type="checkbox" v-model="task.completed"></ul>
 
-    <h1 :class="className">Hello World!</h1>
-    <button :disabled="disabled"  @click="disableButton" v-text="buttonText"></button>
-    <button :class="hide" @click="enableButton">Enable!</button>
+    <h2>Completed Tasks</h2>
+    <ul v-for="task in completeTasks" v-text="task.description"></ul>
+    <h2>Incomplete Tasks</h2>
+    <ul v-for="task in incompleteTasks" v-text="task.description"></ul>
 </div>
 <script src="https://unpkg.com/vue"></script>
 <script>
-    new Vue({
+    var app = new Vue({
         el: '#root',
         data: {
-            newName: '',
-            names: ['Joe', 'Mary', 'Jane', 'Jack'],
-            title: 'Das Botton',
-            className: 'color-red',
-            buttonText: 'Disable Me!',
-            disabled: false,
-            hide: "hide"
+            tasks: [
+                {description: "Drop out of captain school", completed: true},
+                {description: "Forge Captain License", completed: true},
+                {description: "Find the biggest ship ever made", completed: true},
+                {description: "Charter voyage to america", completed: true},
+                {description: "Become easily distracted", completed: false},
+                {description: "Crash Into IceBurg", completed: false}
+            ]
+        },
+        computed:{
+            incompleteTasks: function(){
+                return this.tasks.filter(function (task) {
+                   return !task.completed;
+                });
+            },
+            completeTasks: function(){
+                return this.tasks.filter(function(task){
+                   return task.completed;
+                });
+            }
         },
         methods: {
-            addName: function(){
-                this.names.push(this.newName);
-                this.newName = '';
-            },
-            disableButton: function(){
-                if(!this.disabled){
-                    this.className = 'color-blue';
-                    this.disabled = true;
-                    this.hide = "";
-                }
-            },
-            enableButton: function(){
-                if(this.disabled){
-                    this.disabled = false;
-                    this.hide = "hide";
-                }
+            checkboxChange: function(){
+                alert('change');
             }
         },
         mounted : function(){
