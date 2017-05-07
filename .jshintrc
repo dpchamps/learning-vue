@@ -1,0 +1,21 @@
+{
+  "node": true,
+  "camelcase": true,
+  "curly": true,
+  "immed": true,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "undef": true,
+  "devel": true,
+  "unused": true,
+  "strict": true,
+  "trailing": true,
+  "smarttabs": true,
+  "browser" : true,
+  "laxcomma" : true,
+  "laxbreak" : true,
+  "globals"      : {
+    "Promise"   : true
+  }
+}
