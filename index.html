@@ -10,7 +10,11 @@
 </head>
 <body>
 <div id="root" class="container">
-    <message title="Hello World" body="lorem ipsum dolor sit amet."></message>
+
+    <coupon @coupon-applied="onCouponApplied"></coupon>
+
+    <h1 v-show="this.couponApplied">You used a coupin</h1>
+    <h1 v-show="this.invalidCoupon">Sorry, that coupon isn't valid</h1>
 
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>

@@ -1,32 +1,36 @@
 "use strict";
-Vue.component('message', {
-    props: ['title', 'body'],
-    data: function(){
-        return {
-            isVisible: true
-        }
-    },
+
+
+Vue.component('coupon', {
     template: `
-         <article class="message" v-show="isVisible" @click="hideModal">
-            <div class="message-header">
-               {{ title }}
-               
-               <button class="close"> &times; </button>
-            </div>
-            <div class="message-body">
-                {{ body }}
-            </div>
-        </article>
+        <input placeholder="Enter your coupon code" @blur="onCouponApplied" v-model="userCoupon">
     `,
     methods: {
-        hideModal:  function(){
-            this.isVisible = false;
+        onCouponApplied: function(){
+            var isValid = this.validCoupons.filter(validCoupon => {
+                return validCoupon === this.userCoupon;
+            });
+            this.$emit('coupon-applied', (isValid.length > 0));
+        }
+    },
+    data: function(){
+        return {
+            userCoupon: '',
+            validCoupons: ['AA', "AB", "AC"]
         }
     }
 });
 
 var app = new Vue({
-   el: '#root'
+    el: '#root',
+    data: {
+        couponApplied: false,
+        invalidCoupon: false
+    },
+    methods: {
+        onCouponApplied: function(isValid){
+            this.couponApplied = isValid;
+            this.invalidCoupon = !isValid;
+        }
+    }
 });
-
-console.log(app);

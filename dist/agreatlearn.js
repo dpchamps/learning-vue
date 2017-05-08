@@ -1,34 +1,38 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 "use strict";
-Vue.component('message', {
-    props: ['title', 'body'],
-    data: function(){
-        return {
-            isVisible: true
-        }
-    },
+
+
+Vue.component('coupon', {
     template: `
-         <article class="message" v-show="isVisible" @click="hideModal">
-            <div class="message-header">
-               {{ title }}
-               
-               <button class="close"> &times; </button>
-            </div>
-            <div class="message-body">
-                {{ body }}
-            </div>
-        </article>
+        <input placeholder="Enter your coupon code" @blur="onCouponApplied" v-model="userCoupon">
     `,
     methods: {
-        hideModal:  function(){
-            this.isVisible = false;
+        onCouponApplied: function(){
+            var isValid = this.validCoupons.filter(validCoupon => {
+                return validCoupon === this.userCoupon;
+            });
+            this.$emit('coupon-applied', (isValid.length > 0));
+        }
+    },
+    data: function(){
+        return {
+            userCoupon: '',
+            validCoupons: ['AA', "AB", "AC"]
         }
     }
 });
 
 var app = new Vue({
-   el: '#root'
+    el: '#root',
+    data: {
+        couponApplied: false,
+        invalidCoupon: false
+    },
+    methods: {
+        onCouponApplied: function(isValid){
+            this.couponApplied = isValid;
+            this.invalidCoupon = !isValid;
+        }
+    }
 });
-
-console.log(app);
 },{}]},{},[1]);
