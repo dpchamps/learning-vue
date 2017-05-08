@@ -10,12 +10,13 @@
 </head>
 <body>
 <div id="root" class="container">
-
-    <coupon></coupon>
-
-    <h1 v-show="this.couponApplied">You used a coupin</h1>
-    <h1 v-show="this.invalidCoupon">Sorry, that coupon isn't valid</h1>
-
+    <modal>
+        <template slot="header">HI</template>
+        <p>Help Me Please</p>
+        <template slot="footer">
+            <a class="button is-danger">Nahhh</a>
+        </template>
+    </modal>
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>
 <script src="dist/agreatlearn.js"></script>
