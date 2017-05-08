@@ -1,5 +1,6 @@
 "use strict";
 
+window.Event = new Vue();
 
 Vue.component('coupon', {
     template: `
@@ -10,13 +11,15 @@ Vue.component('coupon', {
             var isValid = this.validCoupons.filter(validCoupon => {
                 return validCoupon === this.userCoupon;
             });
-            this.$emit('coupon-applied', (isValid.length > 0));
+
+            Event.$emit('coupon-applied', (isValid.length > 0));
         }
     },
     data: function(){
         return {
             userCoupon: '',
-            validCoupons: ['AA', "AB", "AC"]
+            validCoupons: ['AA', "AB", "AC"],
+
         }
     }
 });
@@ -25,12 +28,15 @@ var app = new Vue({
     el: '#root',
     data: {
         couponApplied: false,
-        invalidCoupon: false
+        invalidCoupon: false,
+        couponSuccessString: "Great! Coupon is valid!",
+        couponErrorString: ":/ that doesn' look right to me..."
     },
-    methods: {
-        onCouponApplied: function(isValid){
-            this.couponApplied = isValid;
-            this.invalidCoupon = !isValid;
-        }
+    created: function(){
+        Event.$on('coupon-applied', isValidCoupon => {
+            var alertMsg = (isValidCoupon) ? this.couponSuccessString : this.couponErrorString;
+            alert(alertMsg);
+        })
     }
+
 });
