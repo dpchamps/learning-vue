@@ -1,5 +1,5 @@
 {
-  "name": "lightbox",
+  "name": "agreatlearn",
   "version": "0.0.0",
   "description": "I learn vuejs",
   "repository": {
@@ -23,6 +23,7 @@
     "grunt-contrib-uglify": "~0.2.4",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-postcss": "^0.8.0",
-    "grunt-sass": "^1.1.0"
+    "grunt-sass": "^1.1.0",
+    "vue": "^2.3.2"
   }
 }

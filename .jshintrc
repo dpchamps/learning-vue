@@ -16,6 +16,7 @@
   "laxcomma" : true,
   "laxbreak" : true,
   "globals"      : {
-    "Promise"   : true
+    "Promise"   : true,
+    "Vue" : true
   }
 }

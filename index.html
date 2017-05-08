@@ -3,62 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Learning A Good VueJs!</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.css" >
     <style>
-        .color-red{
-            color:red;
-        }
-        .color-blue{
-            color:blue;
-        }
-        .hide{
-            display: none;
-        }
+        body{ padding-top: 2em}
     </style>
 </head>
 <body>
-<div id="root">
-    <h2>All Tasks</h2>
-    <ul v-for="task in tasks">{{task.description}} <input type="checkbox" v-model="task.completed"></ul>
+<div id="root" class="container">
+    <message title="Hello World" body="lorem ipsum dolor sit amet."></message>
 
-    <h2>Completed Tasks</h2>
-    <ul v-for="task in completeTasks" v-text="task.description"></ul>
-    <h2>Incomplete Tasks</h2>
-    <ul v-for="task in incompleteTasks" v-text="task.description"></ul>
 </div>
-<script src="https://unpkg.com/vue"></script>
-<script>
-    var app = new Vue({
-        el: '#root',
-        data: {
-            tasks: [
-                {description: "Drop out of captain school", completed: true},
-                {description: "Forge Captain License", completed: true},
-                {description: "Find the biggest ship ever made", completed: true},
-                {description: "Charter voyage to america", completed: true},
-                {description: "Become easily distracted", completed: false},
-                {description: "Crash Into IceBurg", completed: false}
-            ]
-        },
-        computed:{
-            incompleteTasks: function(){
-                return this.tasks.filter(function (task) {
-                   return !task.completed;
-                });
-            },
-            completeTasks: function(){
-                return this.tasks.filter(function(task){
-                   return task.completed;
-                });
-            }
-        },
-        methods: {
-            checkboxChange: function(){
-                alert('change');
-            }
-        },
-        mounted : function(){
-        }
-    });
-</script>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="dist/agreatlearn.js"></script>
 </body>
 </html>
