@@ -1,23 +1,20 @@
 <template>
   <div id="app">
-    <counter></counter>
+  <pokemon></pokemon>
   </div>
 </template>
 
-
 <script>
-  import counter from './components/counter.vue';
+  import Pokemon from './components/pokemon.vue';
   export default {
     name: 'app',
-    components: {counter},
+    components: { Pokemon },
     data () {
       return {
-        msg: 'Welcome to Your Vue.js App'
       }
     }
   }
 </script>
-
 
 <style>
 
